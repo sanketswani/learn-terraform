@@ -1,10 +1,12 @@
 name: Provision Azure resources with Terraform
+run-name: terraform ${{inputs.action}} on working directory ${{inputs.working-directory}}
 on:
   workflow_dispatch: 
     inputs:
       working-directory:
         type: string
         required: true
+        default: "."
       action:
         type: choice
         required: true
@@ -50,7 +52,6 @@ jobs:
 
     - name: Terraform env-init      
       run: |
-        echo "::echo::off"
         echo -e "oidc_request_token=\"$ACTIONS_ID_TOKEN_REQUEST_TOKEN\"" >> value.auto.tfvars
         echo -e "oidc_request_url=\"$ACTIONS_ID_TOKEN_REQUEST_URL\"" >> value.auto.tfvars
         echo -e "client_id = \"${{ secrets.AZURE_CLIENT_ID }}\"\n" >> value.auto.tfvars
@@ -67,10 +68,10 @@ jobs:
     # Generates an execution apply for Terraform
     - name: Terraform Apply
       if: inputs.action == 'apply'
-
       env:
         TF_LOG: INFO
       run: |
         terraform apply -auto-approve -input=false
 
+# echo "::echo::off"
       
