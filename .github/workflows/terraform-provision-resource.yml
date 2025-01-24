@@ -1,0 +1,76 @@
+name: Provision Azure resources with Terraform
+on:
+  workflow_dispatch: 
+    inputs:
+      working-directory:
+        type: string
+        required: true
+      action:
+        type: choice
+        required: true
+        description: plan/apply
+        options:
+            - plan
+            - apply
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:          
+  provision_components:
+    name: Provision Azure Resources
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+        
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+      with:
+        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+    - name: Terraform Init
+      id: init
+      run: terraform init
+
+    - name: Terraform Format Check
+      id: format_check
+      run: |
+         terraform fmt -check
+
+    - name: Terraform Validate
+      id: validate
+      if: inputs.action == 'plan'
+      run: |
+         terraform validate
+
+    - name: Terraform env-init      
+      run: |
+        echo "::echo::off"
+        echo -e "oidc_request_token=\"$ACTIONS_ID_TOKEN_REQUEST_TOKEN\"" >> value.auto.tfvars
+        echo -e "oidc_request_url=\"$ACTIONS_ID_TOKEN_REQUEST_URL\"" >> value.auto.tfvars
+        echo -e "client_id = \"${{ secrets.AZURE_CLIENT_ID }}\"\n" >> value.auto.tfvars
+        echo -e "subscription_id = \"${{ secrets.AZURE_SUBSCRIPTION_ID }}\"\n" >> value.auto.tfvars
+        echo -e "tenant_id = \"${{ secrets.AZURE_TENANT_ID }}\"\n" >> value.auto.tfvars
+    
+    # Generates an execution plan for Terraform
+    - name: Terraform Plan      
+      # Check if the event is a push to the main branch, in this case enforce PLAN action
+      if: inputs.action == 'plan'
+      run: |
+        terraform plan -input=false
+
+    # Generates an execution apply for Terraform
+    - name: Terraform Apply
+      if: inputs.action == 'apply'
+
+      env:
+        TF_LOG: INFO
+      run: |
+        terraform apply -auto-approve -input=false
+
+      
