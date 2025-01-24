@@ -28,6 +28,5 @@ resource "azurerm_resource_group" "example" {
 variable "subscription_id" {}
 variable "client_id" {}
 variable "tenant_id" {}
-variable "client_secret" {}
 variable "oidc_request_token" {}
 variable "oidc_request_url" {}
