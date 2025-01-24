@@ -18,10 +18,10 @@ provider "azurerm" {
   client_secret   = var.client_secret
 }
 
-# resource "azurerm_resource_group" "example" {
-#   name     = "rg-new-weu-nonprod-001"
-#   location = "West Europe"
-# }
+resource "azurerm_resource_group" "example" {
+  name     = "rg-new-weu-nonprod-002"
+  location = "West Europe"
+}
 
 variable "subscription_id" {}
 variable "client_id" {}
