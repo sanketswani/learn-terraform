@@ -1,12 +1,12 @@
-terraform { 
-  cloud { 
-    
-    organization = "ApnaCompany" 
+terraform {
+  cloud {
 
-    workspaces { 
-      name = "ws-api-based-sanket-002" 
-    } 
-  } 
+    organization = "ApnaCompany"
+
+    workspaces {
+      name = "ws-api-based-sanket-002"
+    }
+  }
 }
 
 provider "azurerm" {
