@@ -6,7 +6,7 @@ resource "azurerm_cosmosdb_account" "db" {
   kind                             = "MongoDB"
   free_tier_enabled                = true
   multiple_write_locations_enabled = false
-  tags                             = { "CreatedBy" = terraform }
+  tags                             = { "CreatedBy" = "terraform" }
   capabilities {
     name = "EnableMongo"
   }
