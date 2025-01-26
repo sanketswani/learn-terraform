@@ -7,6 +7,12 @@ terraform {
       name = "ws-api-based-sanket-002"
     }
   }
+    required_providers {
+    azurerm = {
+      source = "hashicorp/azurerm"
+      version = "4.16.0"
+    }
+  }
 }
 
 provider "azurerm" {
@@ -18,12 +24,6 @@ provider "azurerm" {
   use_oidc           = true
   oidc_request_token = var.oidc_request_token
   oidc_request_url   = var.oidc_request_url
-}
-
-resource "azurerm_resource_group" "example" {
-  name     = "rg-new-weu-nonprod-002"
-  location = "West Europe"
-  tags     = { "created-by" = "terraform", "createdFor" = "Cosmos" }
 }
 
 variable "subscription_id" {}
