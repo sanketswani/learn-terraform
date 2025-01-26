@@ -7,9 +7,9 @@ terraform {
       name = "ws-api-based-sanket-002"
     }
   }
-    required_providers {
+  required_providers {
     azurerm = {
-      source = "hashicorp/azurerm"
+      source  = "hashicorp/azurerm"
       version = "4.16.0"
     }
   }
