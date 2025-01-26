@@ -1,5 +1,5 @@
 resource "azurerm_cosmosdb_account" "db" {
-  name                             = "cosmos-new-account-002"
+  name                             = "cosmos-mongo-account-002"
   location                         = azurerm_resource_group.example.location
   resource_group_name              = azurerm_resource_group.example.name
   offer_type                       = "Standard"
