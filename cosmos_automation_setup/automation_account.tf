@@ -11,7 +11,7 @@ resource "azurerm_automation_account" "automation_account" {
 }
 
 data "local_file" "runbook_file" {
-  filename = "./cosmos_automation_setup/increase_rus.ps1"
+  filename = "${path.module}/increase_rus.ps1"
 }
 
 resource "azurerm_automation_runbook" "example" {
