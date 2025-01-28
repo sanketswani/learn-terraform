@@ -67,9 +67,9 @@ jobs:
     - name: check current dir and grant access
       run: |
         pwd
-        ls -lrt
-        chmod +r increase_rus.ps1   
-         
+        ls -l
+        cat increase-rus.ps1 
+
     # Generates an execution plan for Terraform
     - name: Terraform Plan      
       # Check if the event is a push to the main branch, in this case enforce PLAN action
