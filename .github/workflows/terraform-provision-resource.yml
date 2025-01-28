@@ -6,7 +6,7 @@ on:
       working-directory:
         type: string
         required: true
-        default: "."
+        default: "cosmos_automation_setup"
       action:
         type: choice
         required: true
