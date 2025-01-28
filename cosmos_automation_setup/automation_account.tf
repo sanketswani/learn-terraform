@@ -31,7 +31,7 @@ resource "azurerm_automation_webhook" "update_rus_runbook_webhook" {
   name                    = "Update_RUs_webhook"
   resource_group_name     = azurerm_resource_group.example.name
   automation_account_name = azurerm_automation_account.automation_account.name
-  expiry_time             = "2035-12-31T00:00:00Z"
+  expiry_time             = "2034-12-31T00:00:00Z"
   runbook_name            = azurerm_automation_runbook.update_rus_runbook.name
 }
 
