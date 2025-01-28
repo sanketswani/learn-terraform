@@ -28,5 +28,6 @@ resource "azurerm_cosmosdb_account" "db" {
 resource "azurerm_role_assignment" "identity1_on_cosmos" {
   scope                = azurerm_cosmosdb_account.db.id
   role_definition_name = "Contributor"
-  principal_id         = azurerm_user_assigned_identity.automation_account.object_id
+  principal_id         = azurerm_user_assigned_identity.automation_account.principal_id
+  principal_type       = "ServicePrincipal"
 }
