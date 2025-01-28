@@ -21,8 +21,6 @@ resource "azurerm_cosmosdb_account" "db" {
     location          = azurerm_resource_group.example.location
     failover_priority = 0
   }
-
-
 }
 
 resource "azurerm_role_assignment" "identity1_on_cosmos" {

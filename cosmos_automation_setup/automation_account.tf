@@ -9,3 +9,20 @@ resource "azurerm_automation_account" "automation_account" {
   }
   tags = { "CreatedBy" = "terraform" }
 }
+
+data "local_file" "runbook_file" {
+  filename = "./cosmos_automation_setup/increase_rus.ps1"
+}
+
+resource "azurerm_automation_runbook" "example" {
+  name                    = "Update_RUs"
+  location                = azurerm_resource_group.example.location
+  resource_group_name     = azurerm_resource_group.example.name
+  automation_account_name = azurerm_automation_account.automation_account.name
+  log_verbose             = "true"
+  log_progress            = "true"
+  description             = "This run book will manipulate RUs based on user input"
+  runbook_type            = "PowerShell"
+
+  content = data.local_file.runbook_file.content
+}
