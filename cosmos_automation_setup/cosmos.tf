@@ -35,7 +35,9 @@ resource "azurerm_monitor_metric_alert" "monitor_rus_alert" {
   resource_group_name = azurerm_resource_group.example.name
   scopes              = [azurerm_cosmosdb_account.db.id]
   description         = "Action will be triggered when RU usage is greater than 50% for last hour"
-
+  frequency           = "PT5M"
+  severity            = 0
+  window_size         = "PT1H"
   criteria {
     metric_namespace = "Microsoft.DocumentDB/databaseAccounts"
     metric_name      = "NormalizedRUConsumption"
