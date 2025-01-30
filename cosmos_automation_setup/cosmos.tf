@@ -29,3 +29,28 @@ resource "azurerm_role_assignment" "identity1_on_cosmos" {
   principal_id         = azurerm_user_assigned_identity.automation_account_identity.principal_id
   principal_type       = "ServicePrincipal"
 }
+
+resource "azurerm_monitor_metric_alert" "monitor_rus_alert" {
+  name                = "MonitorRUsAlert"
+  resource_group_name = azurerm_resource_group.example.name
+  scopes              = [azurerm_cosmosdb_account.db.id]
+  description         = "Action will be triggered when RU usage is greater than 50% for last hour"
+
+  criteria {
+    metric_namespace = "Microsoft.DocumentDB/databaseAccounts"
+    metric_name      = "NormalizedRUConsumption"
+    aggregation      = "Maximum"
+    operator         = "GreaterThan"
+    threshold        = 50
+
+    dimension {
+      name     = "CollectionName"
+      operator = "Include"
+      values   = ["testColl"]
+    }
+  }
+
+  action {
+    action_group_id = azurerm_monitor_action_group.update_rus_action_group.id
+  }
+}
