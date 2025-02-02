@@ -24,16 +24,16 @@
 # }
 
 module "cosmos-db-account" {
-  source         = "app.terraform.io/ApnaCompany/cosmos-db-account/azure"
-  version        = "0.1.0"
-  account_name   = "cosmos-mongo-account-002"
-  resource_group = azurerm_resource_group.example.name
-  location       = azurerm_resource_group.example.location
+  source           = "app.terraform.io/ApnaCompany/cosmos-db-account/azure"
+  version          = "0.1.0"
+  account_name     = "cosmos-mongo-account-002"
+  resource_group   = azurerm_resource_group.example.name
+  location         = azurerm_resource_group.example.location
   enable_free_tier = true
 }
 
 resource "azurerm_role_assignment" "identity1_on_cosmos" {
-  scope                =  module.cosmos-db-account.id
+  scope = module.cosmos-db-account.id
   # scope                =  azurerm_cosmosdb_account.db.id
   role_definition_name = "Contributor"
   principal_id         = azurerm_user_assigned_identity.automation_account_identity.principal_id
@@ -45,10 +45,10 @@ resource "azurerm_monitor_metric_alert" "monitor_rus_alert" {
   resource_group_name = azurerm_resource_group.example.name
   scopes              = [module.cosmos-db-account.id]
   # scopes              = [azurerm_cosmosdb_account.db.id]
-  description         = "Action will be triggered when RU usage is greater than 50% for last hour"
-  frequency           = "PT5M"
-  severity            = 0
-  window_size         = "PT1H"
+  description = "Action will be triggered when RU usage is greater than 50% for last hour"
+  frequency   = "PT5M"
+  severity    = 0
+  window_size = "PT1H"
   criteria {
     metric_namespace = "Microsoft.DocumentDB/databaseAccounts"
     metric_name      = "NormalizedRUConsumption"
