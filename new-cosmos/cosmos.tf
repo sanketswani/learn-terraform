@@ -1,7 +1,7 @@
 module "cosmos-db-account" {
   source         = "app.terraform.io/ApnaCompany/cosmos-db-account/azure"
   version        = "0.1.0"
-  account_name   = "cos"
+  account_name   = "cosmos-account-for-mongodb-new-account"
   resource_group = "rg-new-weu-nonprod-002"
   location       = "West Europe"
 }
