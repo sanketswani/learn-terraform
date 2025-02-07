@@ -95,9 +95,9 @@ resource "azapi_resource" "NewColl" {
             }
           }
         ]
-        # shardKey = {
-        #   {customized property} = "string"
-        # }
+        shardKey = {
+          "_id" = "hashed"
+        }
       }
     }
   })
