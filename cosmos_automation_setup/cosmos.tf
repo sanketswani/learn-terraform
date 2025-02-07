@@ -114,7 +114,7 @@ resource "azapi_resource" "NewColl2" {
     properties = {
       options = {
         autoscaleSettings = {
-          maxThroughput = 1000
+          maxThroughput = 2000
         }
       }
       resource = {
