@@ -102,28 +102,28 @@ resource "azapi_resource" "mongodbDatabase" {
 #   }
 # }
 
-resource "azapi_resource" "NewColl2" {
-  type      = "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections@2024-12-01-preview"
-  name      = "myColl2"
-  parent_id = azapi_resource.mongodbDatabase.id
-  location  = azurerm_resource_group.example.location
-  tags = {
-    "createdBy" = "terraform"
-  }
-  body = {
-    properties = {
-      options = {
-        autoscaleSettings = {
-          maxThroughput = 2000
-        }
-      }
-      resource = {
-        createMode = "Default"
-        id         = "myColl2"
-      }
-    }
-  }
-}
+# resource "azapi_resource" "NewColl2" {
+#   type      = "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections@2024-12-01-preview"
+#   name      = "myColl2"
+#   parent_id = azapi_resource.mongodbDatabase.id
+#   location  = azurerm_resource_group.example.location
+#   tags = {
+#     "createdBy" = "terraform"
+#   }
+#   body = {
+#     properties = {
+#       options = {
+#         autoscaleSettings = {
+#           maxThroughput = 2000
+#         }
+#       }
+#       resource = {
+#         createMode = "Default"
+#         id         = "myColl2"
+#       }
+#     }
+#   }
+# }
 
 resource "azurerm_role_assignment" "identity1_on_cosmos" {
   scope = module.cosmos-db-account.id
