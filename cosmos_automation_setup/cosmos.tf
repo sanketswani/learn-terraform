@@ -61,7 +61,7 @@ resource "azapi_resource" "NewColl" {
   tags = {
     "createdBy" = "terraform"
   }
-  body = jsonencode({
+  body = {
     properties = {
       options = {
         autoscaleSettings = {
@@ -100,7 +100,7 @@ resource "azapi_resource" "NewColl" {
         }
       }
     }
-  })
+  }
 }
 
 resource "azurerm_role_assignment" "identity1_on_cosmos" {
