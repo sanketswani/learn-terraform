@@ -94,9 +94,36 @@ resource "azapi_resource" "NewColl" {
             }
           }
         ]
-        # shardKey = {
-        #   "_id" = "hashed"
-        # }
+        shardKey = {
+          "_id" = "hashed"
+        }
+      }
+    }
+  }
+}
+
+resource "azapi_resource" "NewColl2" {
+  type      = "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections@2024-12-01-preview"
+  name      = "myColl2"
+  parent_id = azapi_resource.mongodbDatabase.id
+  # identity = {
+  #   type = "UserAssigned"
+  #   userAssignedIdentities = azurerm_user_assigned_identity.automation_account_identity.name
+  # }
+  location = azurerm_resource_group.example.location
+  tags = {
+    "createdBy" = "terraform"
+  }
+  body = {
+    properties = {
+      options = {
+        autoscaleSettings = {
+          maxThroughput = 1000
+        }
+      }
+      resource = {
+        createMode = "Default"
+        id         = "myColl2"
       }
     }
   }
