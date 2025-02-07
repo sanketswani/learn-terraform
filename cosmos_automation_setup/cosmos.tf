@@ -32,6 +32,23 @@ module "cosmos-db-account" {
   enable_free_tier = true
 }
 
+resource "azapi_resource" "mongodbDatabase" {
+  type      = "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases@2021-10-15"
+  parent_id = module.cosmos-db-account.id
+  name      = "testDB"
+  body = {
+    properties = {
+      options = {
+      }
+      resource = {
+        id = "testDB"
+      }
+    }
+  }
+  schema_validation_enabled = false
+  response_export_values    = ["*"]
+}
+
 resource "azurerm_role_assignment" "identity1_on_cosmos" {
   scope = module.cosmos-db-account.id
   # scope                =  azurerm_cosmosdb_account.db.id
