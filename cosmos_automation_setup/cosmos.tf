@@ -69,9 +69,8 @@ resource "azapi_resource" "NewColl" {
         }
       }
       resource = {
-        analyticalStorageTtl = 30
-        createMode           = "Default"
-        id                   = "myColl"
+        createMode = "Default"
+        id         = "myColl"
         indexes = [
           {
             key = {
