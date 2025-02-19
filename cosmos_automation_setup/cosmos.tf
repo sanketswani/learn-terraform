@@ -49,14 +49,23 @@ resource "azapi_resource" "mongodbDatabase" {
   response_export_values    = ["*"]
 }
 
+# module "cosmos-mongodb-collection" {
+#   source  = "app.terraform.io/ApnaCompany/cosmos-mongodb-collection/azure"
+#   version = "1.0.1"
+#   # insert required variables here
+#   database_id  = azapi_resource.mongodbDatabase.id
+#   name         = "mynewcollection"
+#   scaling_type = "autoscale"
+#   shard_key    = "_id"
+# }
+
 module "cosmos-mongodb-collection" {
   source  = "app.terraform.io/ApnaCompany/cosmos-mongodb-collection/azure"
-  version = "1.0.1"
+  version = "1.0.3"
   # insert required variables here
   database_id  = azapi_resource.mongodbDatabase.id
-  name         = "mynewcollection"
+  name         = "mynewcollectionwithoutshard"
   scaling_type = "autoscale"
-  shard_key    = "_id"
 }
 
 # resource "azapi_resource" "NewColl" {
