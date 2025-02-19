@@ -56,6 +56,7 @@ module "cosmos-mongodb-collection" {
   database_id  = azapi_resource.mongodbDatabase.id
   name         = "mynewcollection"
   scaling_type = "autoscale"
+  shard_key    = "_id"
 }
 
 # resource "azapi_resource" "NewColl" {
