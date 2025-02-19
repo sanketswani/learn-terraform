@@ -51,7 +51,7 @@ resource "azapi_resource" "mongodbDatabase" {
 
 module "cosmos-mongodb-collection" {
   source  = "app.terraform.io/ApnaCompany/cosmos-mongodb-collection/azure"
-  version = "1.0.0"
+  version = "1.0.1"
   # insert required variables here
   database_id  = azapi_resource.mongodbDatabase.id
   name         = "mynewcollection"
