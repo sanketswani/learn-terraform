@@ -49,6 +49,15 @@ resource "azapi_resource" "mongodbDatabase" {
   response_export_values    = ["*"]
 }
 
+module "cosmos-mongodb-collection" {
+  source  = "app.terraform.io/ApnaCompany/cosmos-mongodb-collection/azure"
+  version = "0.0.2"
+  # insert required variables here
+  database_id = azapi_resource.mongodbDatabase.id
+  name = "mynewcollection"
+  scaling_type = "autoscale"
+}
+
 # resource "azapi_resource" "NewColl" {
 #   type      = "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections@2024-12-01-preview"
 #   name      = "myColl"

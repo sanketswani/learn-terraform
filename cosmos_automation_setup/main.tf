@@ -16,6 +16,10 @@ terraform {
       source  = "Azure/azapi"
       version = "2.2.0"
     }
+    jinja = {
+      source = "NikolaLohinski/jinja"
+      version = "2.4.2"
+    }
   }
 }
 
