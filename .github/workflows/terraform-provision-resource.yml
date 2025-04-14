@@ -4,9 +4,12 @@ on:
   workflow_dispatch: 
     inputs:
       working-directory:
-        type: string
+        type: choice
         required: true
-        default: "cosmos_automation_setup"
+        description: from which directory you want to pick terraform code
+        options:
+          - cosmos_automation_setup
+          - static-web-app
       action:
         type: choice
         required: true
