@@ -5,8 +5,8 @@ resource "azurerm_static_web_app" "portfolio-static-web-app" {
   configuration_file_changes_enabled = true
   preview_environments_enabled       = true
   public_network_access_enabled      = true
-  sku_tier                           = Free
-  sku_size                           = Free
+  sku_tier                           = "Free"
+  sku_size                           = "Free"
 }
 
 resource "azurerm_key_vault_secret" "static-web-app-api-key" {
