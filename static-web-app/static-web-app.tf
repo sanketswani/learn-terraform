@@ -8,13 +8,3 @@ resource "azurerm_static_web_app" "portfolio-static-web-app" {
   sku_tier                           = "Free"
   sku_size                           = "Free"
 }
-
-resource "azurerm_key_vault_secret" "static-web-app-api-key" {
-  name         = "static-web-app-api-key"
-  value        = azurerm_static_web_app.portfolio-static-web-app.api_key
-  key_vault_id = var.key_vault_id
-  tags = {
-    environment = "production"
-    project     = "portfolio"
-  }
-}
