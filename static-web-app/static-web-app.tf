@@ -9,7 +9,7 @@ resource "azurerm_static_web_app" "portfolio-static-web-app" {
   sku_size                           = "Free"
 }
 
-resource "azurerm_static_web_app_old" "portfolio-static-web-app_old" {
+resource "azurerm_static_web_app" "portfolio-static-web-app_old" {
   name                               = "my-portfolio"
   resource_group_name                = "rg-portfolio-content"
   location                           = "West Europe"
