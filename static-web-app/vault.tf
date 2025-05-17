@@ -17,7 +17,7 @@ resource "azurerm_key_vault_access_policy" "terraform_application_access" {
 
 resource "azurerm_key_vault_secret" "static-web-app-api-key" {
   name         = "static-web-app-api-key"
-  value        = azurerm_static_web_app.portfolio-static-web-app.api_key
+  value        = azurerm_static_web_app.portfolio-static-web-app_old.api_key
   key_vault_id = var.key_vault_id
   tags = {
     environment = "production"
