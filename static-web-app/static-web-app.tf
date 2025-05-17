@@ -9,6 +9,12 @@ resource "azurerm_static_web_app" "portfolio-static-web-app" {
   sku_size                           = "Free"
 }
 
+import {
+  to = azurerm_static_web_app.portfolio-static-web-app_old
+  id = "/subscriptions/72dc161b-6a20-403a-8338-e0ca13c9d086/resourceGroups/rg-portfolio-content/providers/Microsoft.Web/staticSites/my-portfolio"
+}
+
+
 resource "azurerm_static_web_app" "portfolio-static-web-app_old" {
   name                               = "my-portfolio"
   resource_group_name                = "rg-portfolio-content"
