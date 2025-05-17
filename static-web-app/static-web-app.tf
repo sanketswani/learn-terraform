@@ -24,4 +24,5 @@ resource "azurerm_static_web_app" "portfolio-static-web-app_old" {
   public_network_access_enabled      = true
   sku_tier                           = "Free"
   sku_size                           = "Free"
+  tags                               = { "CreatedBy" = "terraform" }
 }
